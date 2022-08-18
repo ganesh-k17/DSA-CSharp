@@ -193,36 +193,127 @@ namespace DSABeginner.Assessment
         */
         public static int RemainingNumberAfterMaxMinRemoval(int[] numbers)
         {
-            while (true)
+            List<int> list = numbers.ToList();
+            list.Sort();
+            int length = list.Count;
+            int remaining_number = list[ (length ^ 2) == 0 ? (length/2) - 1 : length / 2];
+            return remaining_number;
+        }
+
+        /*
+        Q8. Given an array of N distinct elements, the task is to find all elements in array except two greatest
+        elements in sorted order.
+        Example 1:
+        Input :
+        a[] = {2, 8, 7, 1, 5}
+        Output :
+        1 2 5
+        Explanation :
+        The output three elements have two or
+        more greater elements.
+        Example 2:
+        Input :
+        a[] = {7, -2, 3, 4, 9, -1}
+        Output :
+        -2 -1 3 4
+       */
+
+        public static int[] NumbersExpectTheLast2MaxNumbers(int[] numbers)
+        {
+            Array.Sort(numbers);
+            return numbers.ToList().SkipLast(2).ToArray();
+        }
+
+      /*
+       Q9. Write a program to find the sum of the given series 1+2+3+ . . . . . .(N terms)
+        Example 1:
+        Input:
+        N = 1
+        Output: 1
+        Explanation: For n = 1, sum will be 1.
+        Example 2:
+        Input:
+        N = 5
+        Output: 15
+        Explanation: For n = 5, sum will be 1 + 2 + 3 + 4 + 5 = 15.
+
+      */
+
+        public static int SumOfIndividualNumbers(int n)
+        {
+            int sum = 0;
+            for (int i = 1; i <= n; i++)
             {
-                int max = int.MaxValue;
-                int min = int.MinValue;
-                int theNUmber = -1;
-                int count = 0;
-                for (int i = 0; i < numbers.Length; i++)
-                {
-                    if (numbers[i] == -1)
-                        continue;
-                    if (numbers[i] > max)
-                        max = numbers[i];
-                    if (numbers[i] < min)
-                        min = numbers[i];
-                }
-                for (int i = 0; i < numbers.Length; i++)
-                {
-                    if (numbers[i] != -1)
-                    {
-                        theNUmber = numbers[i];
-                        count++;
-                    }
-                    if (numbers[i] == max || numbers[i] == min)
-                        numbers[i] = -1;                    
-                }
-                if(count == 1)
-                {
-                    return theNUmber;
-                }
+                sum = sum + i;
             }
+            return sum;
+        }
+
+        /*
+         Q10. Given a number N. Your task is to check whether it is fascinating or not.
+         Fascinating Number: When a number(should contain 3 digits or more) is multiplied by 2 and 3 ,and
+         when both these products are concatenated with the original number, then it results in all digits from 1
+         to 9 present exactly once.
+         Example 1:
+         Input:
+         N = 192
+         Output: Fascinating
+         Explanation: After multiplication with 2
+         and 3, and concatenating with original
+         number, number will become 192384576
+         which contains all digits from 1 to 9.
+         Example 2:
+         Input:
+         N = 853
+         Output: Not Fascinating
+         Explanation: It's not a fascinating
+         number. 
+        */
+        public static string IsFacinatingNumber(int n)
+        {
+            string expectedText = "1 2 3 4 5 6 7 8 9";
+            string text = n.ToString();
+            if (n.ToString().Length < 3)
+                return "Not Fascinating";
+            else
+            {
+                text = text + (n*2).ToString() + (n*3).ToString();
+                char[] numbers = text.ToString().ToArray();
+                Array.Sort(numbers);
+                string resultText = string.Join(' ', numbers);
+                return resultText.Equals(expectedText) ? "Fascinating" : "Not Fascinating";
+            }
+        }
+
+        /*
+        Given an array of even size N, task is to find minimum value that can be added to an element so that
+        array become balanced. An array is balanced if the sum of the left half of the array elements is equal
+        to the sum of right half.
+        Example 1:
+        Input:
+        N = 4
+        arr[] = {1, 5, 3, 2}
+        Output: 1
+        Explanation:
+        Sum of first 2 elements is 1 + 5 = 6,
+        Sum of last 2 elements is 3 + 2 = 5,
+        To make the array balanced you can add 1.
+        Example 2:
+        Input:
+        N = 6
+        arr[] = { 1, 2, 1, 2, 1, 3 }
+        Output: 2
+        Explanation:
+        Sum of first 3 elements is 1 + 2 + 1 = 4,
+        Sum of last three elements is 2 + 1 + 3 = 6,
+        To make the array balanced you can add 2.
+       */
+
+        public static int NumberToMakeThisBalanced(int[] n)
+        {
+            int firstHalfSum = n.SkipLast(n.Length / 2).Sum();
+            int secondHalf = n.Skip(n.Length / 2).Sum();
+            return Math.Abs(secondHalf - firstHalfSum);
         }
     }
 }
