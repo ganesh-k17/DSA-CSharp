@@ -54,6 +54,7 @@ namespace DSABeginner
             //int result1 = Assesments2.MajorityElement(new int[] {3,3,4 });
 
             int[] result1 = Assesments2.MoveZeroes(new int[] { 0, 0, 1 });
+            int[] result2 = Assesments2.MoveZeroes(new int[] { 0, 1, 0, 3, 12 });
 
             Console.Read();
         }

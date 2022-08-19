@@ -389,7 +389,7 @@ namespace DSABeginner.Assessments
 
                     shift = shift + 1;
                     nums[(nums.Length) - shift] = 0;
-                    i = 0;
+                    i = -1;
                     n = n - 1;
                     continue;
                 }
