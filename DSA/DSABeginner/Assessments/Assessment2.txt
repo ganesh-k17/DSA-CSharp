@@ -1,0 +1,16 @@
+﻿1. https://leetcode.com/problems/richest-customer-wealth
+
+2. https://leetcode.com/problems/running-sum-of-1d-array/
+
+3. https://leetcode.com/problems/jewels-and-stones
+
+4. https://leetcode.com/problems/minimum-absolute-difference
+
+5. https://leetcode.com/problems/three-consecutive-odds
+
+6. https://leetcode.com/problems/transpose-matrix
+
+7. https://leetcode.com/problems/majority-element
+
+8. https://leetcode.com/problems/move-zeroes
+

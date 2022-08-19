@@ -1,4 +1,5 @@
 ﻿using DSABeginner.Assessment;
+using DSABeginner.Assessments;
 using System;
 
 namespace DSABeginner
@@ -10,7 +11,7 @@ namespace DSABeginner
             // int[] find2MaxResult = Find2Max.Calculate(new int[] { 1, 21, 31, 45, 12, 2, 87, 87, 32 });
 
             // PrintTriangleNumber.Print();
-           //  PrintNumberTable.Print(5, 10);
+            //  PrintNumberTable.Print(5, 10);
             int[] result = ReverseIntegerArray.Calculate(new int[] { 3, 2, 1, 8, 9 });
 
 
@@ -39,6 +40,20 @@ namespace DSABeginner
 
             // string myText = ReverseVowels.Reverse("LEET CODE");
 
+            //int value = Assesments2.WealthiestMansAmount(new int[,] { { 2, 8, 7 },{ 7, 1, 3 },{ 1, 9, 5 } });
+
+            //int[] number = Assesments2.SumOf1DArray(new int[] { 1, 2, 3, 4 });
+            //int[] number1 = Assesments2.SumOf1DArray(new int[] { 3, 1, 2, 10, 1 });
+
+            //int sum =  Assesments2.NumJewelsInStones("aA", "aAAbbbb");
+            //int sum1 = Assesments2.NumJewelsInStones("z", "ZZ");
+
+            // int[][] number = Assesments2.PairsWithMinDifferenceInAscOrder(new int[] { 3, 8, -10, 23, 19, -4, -14, 27 });
+
+            // int[][] result1 = Assesments2.Transpose(new int[][] { new int[] { 1,2,3}, new int[] {4,5,6 }});
+            //int result1 = Assesments2.MajorityElement(new int[] {3,3,4 });
+
+            int[] result1 = Assesments2.MoveZeroes(new int[] { 0, 0, 1 });
 
             Console.Read();
         }
