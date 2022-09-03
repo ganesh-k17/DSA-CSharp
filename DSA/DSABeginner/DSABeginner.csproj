@@ -10,4 +10,12 @@
     <PackageReference Include="xunit" Version="2.4.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="OnClass\Class5-Array2\" />
+    <Folder Include="OnClass\Class4-Array1\" />
+    <Folder Include="OnClass\Class3-SpaceComplexity\" />
+    <Folder Include="OnClass\Class2-TimeComplexity\" />
+    <Folder Include="OnClass\Class1-Warmup\" />
+  </ItemGroup>
+
 </Project>
