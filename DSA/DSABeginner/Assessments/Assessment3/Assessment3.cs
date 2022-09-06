@@ -23,10 +23,11 @@ namespace DSABeginner.Assessments.Assessment3
          Input: n = 19
          Output: true
          Explanation:
-         12 + 92 = 82
-         82 + 22 = 68
-         62 + 82 = 100
-         12 + 02 + 02 = 1
+         1² + 9² = 82
+         8² + 2² = 68
+         6² + 8² = 100
+         1² + 0² + 0² = 1
+
          Example 2:
          
          Input: n = 2
@@ -36,9 +37,25 @@ namespace DSABeginner.Assessments.Assessment3
          
          1 <= n <= 231 - 1
          */
-        public static bool IsHappyNumber()
+        public static bool IsHappyNumber(int number)
         {
-            return true;
+            if (SquareSum(number) == 1)
+                return true;
+            return false;
         }
+
+        static int SquareSum(int number)
+        {
+            int sum = 0;
+            while (number != 0)
+            {
+                sum += (number % 10) * (number % 10);
+                number = number / 10;
+                if(number != 0)
+
+            }
+            return sum;
+        }
+
     }
 }

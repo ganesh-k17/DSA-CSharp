@@ -1,5 +1,6 @@
 ﻿using DSABeginner.Assessment;
 using DSABeginner.Assessments;
+using DSABeginner.Assessments.Assessment3;
 using System;
 
 namespace DSABeginner
@@ -53,8 +54,11 @@ namespace DSABeginner
             // int[][] result1 = Assesments2.Transpose(new int[][] { new int[] { 1,2,3}, new int[] {4,5,6 }});
             //int result1 = Assesments2.MajorityElement(new int[] {3,3,4 });
 
-            int[] result1 = Assesments2.MoveZeroes(new int[] { 0, 0, 1 });
-            int[] result2 = Assesments2.MoveZeroes(new int[] { 0, 1, 0, 3, 12 });
+            //int[] result1 = Assesments2.MoveZeroes(new int[] { 0, 0, 1 });
+            //int[] result2 = Assesments2.MoveZeroes(new int[] { 0, 1, 0, 3, 12 });
+
+            bool result1 = Assessment3.IsHappyNumber(19);
+            bool result2 = Assessment3.IsHappyNumber(2);
 
             Console.Read();
         }
