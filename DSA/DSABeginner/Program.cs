@@ -57,8 +57,10 @@ namespace DSABeginner
             //int[] result1 = Assesments2.MoveZeroes(new int[] { 0, 0, 1 });
             //int[] result2 = Assesments2.MoveZeroes(new int[] { 0, 1, 0, 3, 12 });
 
-            bool result1 = Assessment3.IsHappyNumber(19);
-            bool result2 = Assessment3.IsHappyNumber(2);
+            // bool result1 = Assessment3.IsHappyNumber(19);
+            // bool result2 = Assessment3.IsHappyNumber(2);
+
+            string reversed = Assessment3.ReverseVowels("a.");
 
             Console.Read();
         }

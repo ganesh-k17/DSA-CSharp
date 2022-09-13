@@ -27,13 +27,13 @@ namespace DSABeginner
     {
         public static string Reverse(string s)
         {
-            char[] vowels= new char[] { 'a','e','i','o','u' };
+            char[] vowels = new char[] { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
             char[] textArray = s.ToArray();
             int n = textArray.Length;
             char[] orderedVowels = new char[s.Length];
             int count = 0;
 
-            for (int i = n-1; i > 0; i--)
+            for (int i = n - 1; i >= 0; i--)
             {
                 for (int j = 0; j < vowels.Length; j++)
                 {
@@ -45,6 +45,7 @@ namespace DSABeginner
                 }
             }
 
+            count = 0;
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < vowels.Length; j++)
@@ -53,6 +54,7 @@ namespace DSABeginner
                     {
                         textArray[i] = orderedVowels[count];
                         count++;
+                        break;
                     }
                 }
             }
