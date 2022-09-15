@@ -60,7 +60,11 @@ namespace DSABeginner
             // bool result1 = Assessment3.IsHappyNumber(19);
             // bool result2 = Assessment3.IsHappyNumber(2);
 
-            string reversed = Assessment3.ReverseVowels("a.");
+            // string reversed = Assessment3.xorIt("hello", "ganesh");
+            // char myText = Assessment3.FindTheDifference("ae", "aea");
+
+
+            int s = Assessment3.addDigits(38);
 
             Console.Read();
         }
