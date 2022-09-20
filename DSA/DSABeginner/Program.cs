@@ -64,7 +64,9 @@ namespace DSABeginner
             // char myText = Assessment3.FindTheDifference("ae", "aea");
 
 
-            int s = Assessment3.addDigits(38);
+            // int s = Assessment3.addDigits(38);
+
+            int s = Assessment3.GetLucky("leetcode", 2);
 
             Console.Read();
         }

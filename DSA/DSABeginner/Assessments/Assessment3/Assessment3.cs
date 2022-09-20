@@ -503,7 +503,7 @@ namespace DSABeginner.Assessments.Assessment3
         Input: s = "leetcode", k = 2
         Output: 6
         Explanation: The operations are as follows:
-        - Convert: "leetcode" ➝ "(12)(5)(5)(20)(3)(15)(4)(5)" ➝ "12552031545" ➝ 12552031545
+        - Convert: "leetcode" ➝ "(12)(5)(5)(20)(3)(15)(4)(5)" ➝ "12552031545" ➝ 12552031545 
         - Transform #1: 12552031545 ➝ 1 + 2 + 5 + 5 + 2 + 0 + 3 + 1 + 5 + 4 + 5 ➝ 33
         - Transform #2: 33 ➝ 3 + 3 ➝ 6
         Thus the resulting integer is 6.
@@ -518,10 +518,36 @@ namespace DSABeginner.Assessments.Assessment3
         1 <= k <= 10
         s consists of lowercase English letters.
         */
-        //int addDigits(int num) //
-        //{
-        //    if (num == 0) return 0;
-        //    return num % 9 == 0 ? 9 : num % 9;
-        //}
+
+        public static int GetLucky(string s, int k)
+        {
+            int n = 0;
+
+            var txtArray = s.ToArray().Select(s => getPosition(s)).ToArray();
+            var numText = string.Join("",txtArray);
+
+            n = n + numText.Sum(i => (int)Char.GetNumericValue(i));
+
+            for (int i = 0; i < k-1; i++)
+            {
+                int sum = 0;
+                while (n > 0)
+                {
+                    sum = sum + (n % 10);
+                    n = n / 10;
+                }
+                n = sum;
+                if (n > 0 && n <= 9)
+                    break;
+            }
+
+            return n;
+        }
+
+        public static int getPosition(char c)
+        {
+            int index = char.ToUpper(c) - 64;
+            return index;
+        }
     }
 }
