@@ -30,12 +30,20 @@ namespace DSABeginner.OnClass.Class10_stack
      1 <= s.length <= 105
      s consists of lowercase English letters. 
     */
-    public class RemoveDuplicates
-    {   public string RemoveDuplicates(string s)
+    public class ContinuousDuplicateRemovalInText
+    {   
+        public static string RemoveDuplicates(string s)
         {
-            s = "abbaca";
-             
-            Stack<Tuple<string, int>> stk = new Stack<Tuple<string, int>>();
+            Stack<Tuple<char, int>> stk = new Stack<Tuple<char, int>>();
+            foreach (char c in s)
+            {
+                if (stk.Count > 0 && stk.Peek().Item1 == c)
+                    stk.Pop();
+                else
+                    stk.Push(Tuple.Create(c, 1));
+            }
+
+            return new string(stk.Select(s => s.Item1).ToArray().Reverse().ToArray());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DSABeginner.Assessment;
 using DSABeginner.Assessments;
 using DSABeginner.Assessments.Assessment3;
+using DSABeginner.OnClass.Class10_stack;
 using System;
 
 namespace DSABeginner
@@ -66,7 +67,9 @@ namespace DSABeginner
 
             // int s = Assessment3.addDigits(38);
 
-            int s = Assessment3.GetLucky("leetcode", 2);
+            // int s = Assessment3.GetLucky("leetcode", 2);
+
+            string s = DuplicateRemovalInText.RemoveDuplicates("abbaca");
 
             Console.Read();
         }
