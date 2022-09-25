@@ -69,7 +69,7 @@ namespace DSABeginner
 
             // int s = Assessment3.GetLucky("leetcode", 2);
 
-            string s = DuplicateRemovalInText.RemoveDuplicates("abbaca");
+            string s = ContinuousDuplicateRemovalInText.RemoveDuplicatesOfGivenNumberOfTimes("abcd", 3);
 
             Console.Read();
         }
