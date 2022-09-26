@@ -1,4 +1,7 @@
-﻿1) Sliding Window
+﻿# Problem Patterns
+
+
+1) Sliding Window
 2) Islands (Matrix Traversal)
 3) Two Pointers
 4) Fast & Slow Pointers
@@ -19,6 +22,4 @@
 19) Palindromic Subsequence
 20) Longest Common Substring
 
-
-
-ref: https://www.linkedin.com/posts/ankit5999_interviewquestions-interviews-leetcode-activity-6977921841487048704-rygy?utm_source=share&utm_medium=member_desktop
+Refer: [Problem Patterns](https://www.linkedin.com/posts/ankit5999_interviewquestions-interviews-leetcode-activity-6977921841487048704-rygy?utm_source=share&utm_medium=member_desktop)
