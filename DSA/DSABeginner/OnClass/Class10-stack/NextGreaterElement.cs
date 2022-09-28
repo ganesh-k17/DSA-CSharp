@@ -54,10 +54,10 @@ namespace DSABeginner.OnClass.Class10_stack
                 bool valueFound = false;
                 for (int j = 0; j < nums2.Length; j++)
                 {
-                    if(nums1[i] == nums2[j])
+                    if (nums1[i] == nums2[j])
                         found = true;
 
-                    if(found == true && nums1[i] < nums2[j])
+                    if (found == true && nums1[i] < nums2[j])
                     {
                         result[i] = nums2[j];
                         valueFound = true;
@@ -69,5 +69,11 @@ namespace DSABeginner.OnClass.Class10_stack
             }
             return result;
         }
+
+        public int[] FindWithStack(int[] nums1, int[] nums2)
+        {            
+            return new int[] { };
+        }
     }
+
 }
