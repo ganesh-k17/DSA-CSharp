@@ -71,7 +71,13 @@ namespace DSABeginner
 
             // string s = ContinuousDuplicateRemovalInText.RemoveDuplicatesOfGivenNumberOfTimes("abcd", 3);
 
-            bool istrue = ValidParanthesis.Validate("()");
+            //bool istrue = ValidParanthesis.Validate("()");
+
+
+
+            string s = "raja";
+            int t = s.GetHashCode();
+            t = s.GetHashCode();
 
             Console.Read();
         }
