@@ -1,6 +1,8 @@
 ﻿using DSABeginner.Assessment;
 using DSABeginner.Assessments;
 using DSABeginner.Assessments.Assessment3;
+using DSABeginner.Assessments.Assessment5;
+using DSABeginner.OnClass.Class_LinkedList;
 using DSABeginner.OnClass.Class10_stack;
 using System;
 
@@ -75,11 +77,62 @@ namespace DSABeginner
 
 
 
-            string s = "raja";
-            int t = s.GetHashCode();
-            t = s.GetHashCode();
+            //string s = "raja";
+            //int t = s.GetHashCode();
+            //t = s.GetHashCode();
+
+            //var myNode = new ListNode()
+            //{
+            //    next = new ListNode()
+            //    {
+            //        next = new ListNode()
+            //        {
+            //            next = new ListNode()
+            //            {
+
+            //            }
+            //        }
+            //    }
+            //};
+
+            //LinkedListProblems.GetIntersectionNode(
+            //    new ListNode()
+            //    {
+            //        next = new ListNode()
+            //        {
+            //            next = new ListNode()
+            //            {
+            //                next = new ListNode()
+            //                {
+            //                    next = myNode
+            //                }
+            //            }
+            //        }
+            //    },
+            //    new ListNode()
+            //    {
+            //        next = new ListNode()
+            //        {
+            //            next = new ListNode()
+            //            {
+            //                next = myNode
+            //            }
+            //        }
+            //    });
+
+            Assessment5.GeneratePascalII(30);
 
             Console.Read();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
