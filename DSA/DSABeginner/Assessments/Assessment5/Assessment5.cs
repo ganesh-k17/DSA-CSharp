@@ -332,6 +332,34 @@ namespace DSABeginner.Assessments.Assessment5
             }
             return rowNumbser;
         }
+
+        /* 
+        6.
+        https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+        */
+        public static int MaxProfit(int[] prices)
+        {
+            int profit = 0;
+            for (int i = 0; i < prices.Length; i++)
+            {
+                for (int j = i+1; j < prices.Length-1; j++)
+                {
+                    int diff = prices[j] - prices[i];
+                    if(diff > 0 && diff > profit)
+                    {
+                        profit = diff;
+                    }
+                }
+            }
+            return profit;
+        }
     }
 }
+
+
+
+
+
+
+
 
