@@ -339,19 +339,207 @@ namespace DSABeginner.Assessments.Assessment5
         */
         public static int MaxProfit(int[] prices)
         {
+            //int profit = 0;
+            //for (int i = 0; i < prices.Length; i++)
+            //{
+            //    for (int j = i+1; j < prices.Length-1; j++)
+            //    {
+            //        int diff = prices[j] - prices[i];
+            //        if(diff > 0 && diff > profit)
+            //        {
+            //            profit = diff;
+            //        }
+            //    }
+            //}
+            //return profit;
+
+            //int lsf = int.MaxValue;
+            //int op = 0;
+            //int pist = 0;
+
+            //for (int i = 0; i < prices.Length; i++)
+            //{
+            //    if (prices[i] < lsf)
+            //    {
+            //        lsf = prices[i];
+            //    }
+            //    pist = prices[i] - lsf;
+            //    if (op < pist)
+            //    {
+            //        op = pist;
+            //    }
+            //}
+            //return op;
+
+
+            int min = int.MaxValue;
             int profit = 0;
             for (int i = 0; i < prices.Length; i++)
             {
-                for (int j = i+1; j < prices.Length-1; j++)
+                int price = prices[i];
+                if (price < min)
                 {
-                    int diff = prices[j] - prices[i];
-                    if(diff > 0 && diff > profit)
-                    {
-                        profit = diff;
-                    }
+                    min = price;
+                    continue;  // if min then we dont need to calculate profit as we have to search for the next sale value
+                }
+
+                var diff = price - min;  // calculate diff if price is not minimum
+                if (diff > profit)       // if diff > profit then diff will be the profit.
+                    profit = diff;
+            }
+            return profit;
+        }
+
+        /* 
+        7.
+         https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+        */
+
+        /*
+        public static int MaxProfitII(int[] prices)
+        {
+            int profit = 0;
+            int min = int.MaxValue;
+            for (int i = 0; i < prices.Length; i++)
+            {
+                int price = prices[i];
+                if (price < min)
+                {
+                    min = price;
+                    continue;
+                }
+                var diff = price - min;
+                profit += diff;  // Profit will be compount of all our gain.
+
+                min = price;  // we have to reset the min value as we have selled the stock and purchasing again.
+            }
+            return profit;
+        }
+        */
+
+        public static int MaxProfitII(int[] prices)
+        {
+            int profit = 0;
+            for (int i = 1; i < prices.Length; i++)
+            {
+                if (prices[i] > prices[i - 1])
+                {
+                    profit += prices[i] - prices[i - 1];
                 }
             }
             return profit;
+        }
+
+        /*
+         8.  https://leetcode.com/problems/majority-element/
+        Given an array nums of size n, return the majority element.
+
+        The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+             
+
+        Example 1:
+        
+        Input: nums = [3,2,3]
+        Output: 3
+        Example 2:
+        
+        Input: nums = [2,2,1,1,1,2,2]
+        Output: 2
+         
+        
+        Constraints:
+        
+        n == nums.length
+        1 <= n <= 5 * 104
+        -109 <= nums[i] <= 109
+         
+        
+        Follow-up: Could you solve the problem in linear time and in O(1) space?
+         */
+        /* public static int MajorityElement(int[] nums)
+         {
+             int number = 0;
+             int result = 0;
+             int max = 0;
+             int count = 0;
+
+             Array.Sort(nums);
+             for (int i = 0; i < nums.Length; i++)
+             {
+                 if (i != 0 && nums[i] != number)
+                 {
+                     count = 0;
+                     count = count + 1;
+                 }
+                 else
+                 {
+                     count++;
+                     if (count > max)
+                     {
+                         max = count;
+                         result = nums[i];
+                     }
+                 }
+
+                 number = nums[i];
+
+             }
+             return result;
+         }*/
+
+        public static int MajorityElement(int[] nums)  // Boyer's moore voting algorithm  (This would only work for the constraint n/2 as mentioned in the problem)
+        {
+
+            int count = 0;
+            int theElement = 0;
+
+            foreach (int ele in nums)
+            {
+                if (count == 0)
+                {
+                    theElement = ele;
+                }
+
+                if (ele == theElement)
+                {
+                    count = count + 1;
+                }
+                else
+                {
+                    count = count - 1;
+                }
+            }
+            return theElement;
+        }
+
+        /*
+         9. https://leetcode.com/problems/majority-element-ii/
+
+        Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+        
+        Example 1:
+        
+        Input: nums = [3,2,3]
+        Output: [3]
+        Example 2:
+        
+        Input: nums = [1]
+        Output: [1]
+        Example 3:
+        
+        Input: nums = [1,2]
+        Output: [1,2]
+         
+        
+        Constraints:
+        
+        1 <= nums.length <= 5 * 104
+        -109 <= nums[i] <= 109
+         */
+
+        public static IList<int> MajorityElementII(int[] nums)
+        {
+            return new List<int>() { };
         }
     }
 }

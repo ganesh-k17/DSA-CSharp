@@ -7,6 +7,7 @@ https://iq.opengenus.org/kmp-vs-boyer-moore-algorithm/
 XOR Hacks: https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetNaive
 
 Rolling Hash:
+Boyer's moore voting algorithm
 
 https://iq.opengenus.org/rolling-hash/
 

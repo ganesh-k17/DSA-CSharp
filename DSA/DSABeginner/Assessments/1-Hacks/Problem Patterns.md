@@ -22,4 +22,6 @@
 19) Palindromic Subsequence
 20) Longest Common Substring
 
+Boyer's moore voting algorithm
+
 Refer: [Problem Patterns](https://www.linkedin.com/posts/ankit5999_interviewquestions-interviews-leetcode-activity-6977921841487048704-rygy?utm_source=share&utm_medium=member_desktop)
