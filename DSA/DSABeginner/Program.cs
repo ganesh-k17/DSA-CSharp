@@ -120,7 +120,9 @@ namespace DSABeginner
             //        }
             //    });
 
-            int res = Assessment5.MajorityElement(new int[] { 3, 2, 2 });
+            // Assessment5.MajorityElementII(new int[] { 4, 2, 1,1 });
+
+            Assessment5.findMissingRanges(new int[] { 0, 1, 3, 50, 75 }, 0, 99);
 
             Console.Read();
         }

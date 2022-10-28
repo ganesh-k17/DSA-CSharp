@@ -551,28 +551,31 @@ namespace DSABeginner.Assessments.Assessment5
                 {
                     theElement1 = ele;
                 }
-                else if(count2 == 0){
+                else if (count2 == 0)
+                {
                     theElement2 = ele;
                 }
 
-                if (ele == theElement1)
+                else if (ele == theElement1)
                 {
                     count1++;
                 }
-                else if((ele == theElement2))
+                else if ((ele == theElement2))
                 {
                     count2++;
                 }
             }
 
-            count1 = count2 = 0;
-            List<int> elements = new List<int>();
+            count1 = 0;
+            count2 = 0;
 
-            foreach(int ele in nums)
+            List<int> elements = new();
+
+            foreach (int ele in nums)
             {
                 if (ele == theElement1)
                     count1++;
-                else if(ele == theElement2)
+                else if (ele == theElement2)
                     count2++;
             }
 
@@ -584,6 +587,97 @@ namespace DSABeginner.Assessments.Assessment5
 
             return elements;
         }
+
+        /* 
+         10. https://leetcode.com/problems/missing-ranges/ 
+        Given a sorted integer array nums, where the range of elements are in the inclusive range [lower, upper], return its missing ranges.
+
+        Example:
+        
+        Input: nums = [0, 1, 3, 50, 75], lower = 0 and upper = 99,
+        Output: ["2", "4->49", "51->74", "76->99"]
+        The high level idea:
+        
+        Check each num in nums[]. Initialize another variable next = lower.
+        
+        If nums[i]< next: we jump to next num to check if it’s in range.
+        If nums[i]== next: it means we find the first num in range. We increment the next target by one.
+        If nums[i] > next: Add the missing range [next, nums[i] — 1]. Update the next value to nums[i] + 1.
+        After we finished the above loop, we need to double check the final next value. If next ≤ upper, we still have a missing range [next, upper] to add.
+        We create a separate function getRange(int unm1, int num2) to deal with two cases: num1 == num2 or num1 < num2
+
+         */
+        public static List<String> findMissingRanges(int[] nums, int lower, int upper)
+        {
+            List<string> results = new();
+
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                if (i == 0)
+                {
+                    if ((nums[0] - lower) == 0)
+                        continue;
+                    else if ((nums[0] - lower) == 1)
+                        results.Add(Convert.ToString(lower));
+                    else
+                        results.Add($"{lower + 1}->{nums[0] - 1}");
+                }
+                else
+                {
+                    AddRange(results, nums[i], nums[i+1], false);
+                }
+            }
+
+            AddRange(results, nums[nums.Length - 1], upper, true);
+
+            return results;
+        }
+
+        private static void AddRange(List<string> results, int lower, int upper, bool isLast)
+        {
+            if ((upper - lower) == 1)
+                return;
+            if ((upper - lower) == 2)
+                results.Add(Convert.ToString(lower +1 ));
+            else {
+                upper = isLast ? upper : upper - 1;
+                results.Add($"{lower + 1}->{ upper }");
+            }
+        }
+
+        /*
+         11. https://leetcode.com/problems/3sum/ 
+        Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+
+        Notice that the solution set must not contain duplicate triplets.
+        
+        Example 1:
+        
+        Input: nums = [-1,0,1,2,-1,-4]
+        Output: [[-1,-1,2],[-1,0,1]]
+        Explanation: 
+        nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+        nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+        nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+        The distinct triplets are [-1,0,1] and [-1,-1,2].
+        Notice that the order of the output and the order of the triplets does not matter.
+        Example 2:
+        
+        Input: nums = [0,1,1]
+        Output: []
+        Explanation: The only possible triplet does not sum up to 0.
+        Example 3:
+        
+        Input: nums = [0,0,0]
+        Output: [[0,0,0]]
+        Explanation: The only possible triplet sums up to 0.
+         
+        
+        Constraints:
+        
+        3 <= nums.length <= 3000
+        -105 <= nums[i] <= 105
+        */
     }
 }
 
