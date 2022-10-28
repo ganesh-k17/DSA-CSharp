@@ -539,7 +539,50 @@ namespace DSABeginner.Assessments.Assessment5
 
         public static IList<int> MajorityElementII(int[] nums)
         {
-            return new List<int>() { };
+            int count1 = 0;
+            int count2 = 0;
+
+            int theElement1 = 0;
+            int theElement2 = 0;
+
+            foreach (int ele in nums)
+            {
+                if (count1 == 0)
+                {
+                    theElement1 = ele;
+                }
+                else if(count2 == 0){
+                    theElement2 = ele;
+                }
+
+                if (ele == theElement1)
+                {
+                    count1++;
+                }
+                else if((ele == theElement2))
+                {
+                    count2++;
+                }
+            }
+
+            count1 = count2 = 0;
+            List<int> elements = new List<int>();
+
+            foreach(int ele in nums)
+            {
+                if (ele == theElement1)
+                    count1++;
+                else if(ele == theElement2)
+                    count2++;
+            }
+
+            if (count1 > nums.Length / 3)
+                elements.Add(theElement1);
+
+            if (count2 > nums.Length / 3)
+                elements.Add(theElement2);
+
+            return elements;
         }
     }
 }
