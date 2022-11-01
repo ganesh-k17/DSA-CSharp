@@ -122,7 +122,11 @@ namespace DSABeginner
 
             // Assessment5.MajorityElementII(new int[] { 4, 2, 1,1 });
 
-            Assessment5.findMissingRanges(new int[] { 0, 1, 3, 50, 75 }, 0, 99);
+            // Assessment5.findMissingRanges(new int[] { 0, 1, 3, 50, 75 }, 0, 99);
+
+            // bool isPalindrome = PalindromeByResursion.Validate("malayalam");
+
+            MergeIntervals.Merge(new int[][] { new int[] { 1, 3 }, new int[] { 2, 6 }, new int[] { 8, 10 }, new int[] { 15, 18 } });
 
             Console.Read();
         }

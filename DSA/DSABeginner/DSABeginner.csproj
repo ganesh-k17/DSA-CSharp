@@ -24,6 +24,7 @@
     <Folder Include="OnClass\Class3-SpaceComplexity\" />
     <Folder Include="OnClass\Class2-TimeComplexity\" />
     <Folder Include="OnClass\Class1-Warmup\" />
+    <Folder Include="OnClass\Class13-Sorting\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,10 @@
+﻿Dutch national flag algorithm
+
+https://users.monash.edu/~lloyd/tildeAlgDS/Sort/Flag/
+https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
+
+
+problems discussed:
+
+https://leetcode.com/problems/merge-intervals/
+https://leetcode.com/problems/insert-interval/
