@@ -678,6 +678,71 @@ namespace DSABeginner.Assessments.Assessment5
         3 <= nums.length <= 3000
         -105 <= nums[i] <= 105
         */
+        public static IList<IList<int>> ThreeSum(int[] nums)
+        {
+            List<IList<int>> resutl = new();
+            Dictionary<int, int> hashMap = new();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                hashMap.Add(i, nums[i]);
+            }
+
+            for (int j = 0; j < nums.Length - 1; j++)
+            {
+                for (int k = 1; k < nums.Length; k++)
+                {
+                    int target = 0;
+                    int val = target - (nums[j] + nums[k]);
+                    int currentValue = -1;
+                    if( -1!=(currentValue = ContainsValue(hashMap, val, j, k)))
+                    {
+                        resutl.Add(new List<int>() { val, nums[j], nums[k] });
+                    }
+                }
+            }
+
+            return new List<IList<int>>();
+
+
+            //List<IList<int>> resutl = new();
+            //Dictionary<int, int> hashMap = new();
+
+            //for (int i = 0; i < nums.Length; i++)
+            //{   
+            //    hashMap.Add(nums[i], i);
+            //}
+
+            //for (int j = 0; j < nums.Length-1; j++)
+            //{
+            //    for (int k = 1; k < nums.Length; k++)
+            //    {
+            //        int target = 0;
+            //        int val = target - (nums[j] + nums[k]);
+            //        if (hashMap.ContainsKey(val) && hashMap[val] != j && hashMap[val] != k)
+            //            resutl.Add(new List<int>() {val, nums[j], nums[k] });
+            //    }
+            //}
+
+            //return new List<IList<int>>();
+        }
+
+        public static int ContainsValue(Dictionary<int,int> hashMap, int val,int index1, int index2)
+        {
+            for (int i = 0; i < hashMap.Count(); i++)
+            {
+                if (hashMap[i] == val && i != index1 && i != index2)
+                    return hashMap[i];
+            }
+            return -1;
+        }
+
+        public static (int,int) ThreeSum1(int[] nums)
+        {
+            List<IList<int>> resutl = new();
+
+            return (5,6);
+        }
     }
 }
 

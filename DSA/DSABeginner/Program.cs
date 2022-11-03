@@ -126,7 +126,9 @@ namespace DSABeginner
 
             // bool isPalindrome = PalindromeByResursion.Validate("malayalam");
 
-            MergeIntervals.Merge(new int[][] { new int[] { 1, 3 }, new int[] { 2, 6 }, new int[] { 8, 10 }, new int[] { 15, 18 } });
+            // MergeIntervals.Merge(new int[][] { new int[] { 1, 3 }, new int[] { 2, 6 }, new int[] { 8, 10 }, new int[] { 15, 18 } });
+
+            Assessment5.ThreeSum(new int[] { -1, 0, 1, 2, -1, -4 });
 
             Console.Read();
         }
