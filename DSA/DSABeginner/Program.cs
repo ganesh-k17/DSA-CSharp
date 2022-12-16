@@ -128,7 +128,8 @@ namespace DSABeginner
 
             // MergeIntervals.Merge(new int[][] { new int[] { 1, 3 }, new int[] { 2, 6 }, new int[] { 8, 10 }, new int[] { 15, 18 } });
 
-            Assessment5.ThreeSum(new int[] { -1, 0, 1, 2, -1, -4 });
+            //Assessment5.ThreeSum(new int[] { -1, 0, 1, 2, -1, -4 });
+            int res = Assessment5.Find3SumSmaller(new int[] { -2, 0, 1, 3 }, 2);
 
             Console.Read();
         }

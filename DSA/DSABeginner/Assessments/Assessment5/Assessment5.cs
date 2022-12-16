@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -678,14 +679,40 @@ namespace DSABeginner.Assessments.Assessment5
         3 <= nums.length <= 3000
         -105 <= nums[i] <= 105
         */
-        public static IList<IList<int>> ThreeSum(int[] nums)
+        public static IList<List<int>> ThreeSum(int[] nums)
         {
-            List<IList<int>> resutl = new();
+            //List<IList<int>> resutl = new();
+            //Dictionary<int, int> hashMap = new();
+
+            //for (int i = 0; i < nums.Length; i++)
+            //{
+            //    hashMap.Add(i, nums[i]);
+            //}
+
+            //for (int j = 0; j < nums.Length - 1; j++)
+            //{
+            //    for (int k = 1; k < nums.Length; k++)
+            //    {
+            //        int target = 0;
+            //        int val = target - (nums[j] + nums[k]);
+            //        int currentValue = -1;
+            //        if( -1!=(currentValue = ContainsValue(hashMap, val, j, k)))
+            //        {
+            //            resutl.Add(new List<int>() { val, nums[j], nums[k] });
+            //        }
+            //    }
+            //}
+
+            //return new List<IList<int>>();
+
+
+            List<List<int>> resutl = new();
             Dictionary<int, int> hashMap = new();
 
             for (int i = 0; i < nums.Length; i++)
             {
-                hashMap.Add(i, nums[i]);
+                if (!hashMap.ContainsKey(nums[i]))
+                    hashMap.Add(nums[i], i);
             }
 
             for (int j = 0; j < nums.Length - 1; j++)
@@ -694,37 +721,16 @@ namespace DSABeginner.Assessments.Assessment5
                 {
                     int target = 0;
                     int val = target - (nums[j] + nums[k]);
-                    int currentValue = -1;
-                    if( -1!=(currentValue = ContainsValue(hashMap, val, j, k)))
+                    if (hashMap.ContainsKey(val) && hashMap[val] != j && hashMap[val] != k && j != k)
                     {
                         resutl.Add(new List<int>() { val, nums[j], nums[k] });
+                        hashMap.Remove(val);
                     }
                 }
             }
 
-            return new List<IList<int>>();
-
-
-            //List<IList<int>> resutl = new();
-            //Dictionary<int, int> hashMap = new();
-
-            //for (int i = 0; i < nums.Length; i++)
-            //{   
-            //    hashMap.Add(nums[i], i);
-            //}
-
-            //for (int j = 0; j < nums.Length-1; j++)
-            //{
-            //    for (int k = 1; k < nums.Length; k++)
-            //    {
-            //        int target = 0;
-            //        int val = target - (nums[j] + nums[k]);
-            //        if (hashMap.ContainsKey(val) && hashMap[val] != j && hashMap[val] != k)
-            //            resutl.Add(new List<int>() {val, nums[j], nums[k] });
-            //    }
-            //}
-
-            //return new List<IList<int>>();
+            var result = resutl.Distinct(new ArrayDistinct()).ToList();
+            return result;
         }
 
         public static int ContainsValue(Dictionary<int,int> hashMap, int val,int index1, int index2)
@@ -740,10 +746,64 @@ namespace DSABeginner.Assessments.Assessment5
         public static (int,int) ThreeSum1(int[] nums)
         {
             List<IList<int>> resutl = new();
-
+            
             return (5,6);
         }
+
+
+        /*
+         https://leetcode.com/problems/3sum-smaller/  
+
+        Given an array of n integers nums and a target, find the number of index triplets i, j, k with 0 <= i < j < k < n 
+        that satisfy the condition nums[i] + nums[j] + nums[k] < target.
+
+        For example, given nums = [-2, 0, 1, 3], and target = 2.
+
+        Return 2. Because there are two triplets which sums are less than 2:
+
+        [-2, 0, 1]
+        [-2, 0, 3]
+        */
+
+        public static int Find3SumSmaller(int[] nums, int target)
+        {
+            int count = 0;
+            for (int i = 0; i < nums.Length-1; i++)
+            {
+                int l = i + 1;
+                int r = nums.Length - 1;
+                while (l < r)
+                {
+                    if (nums[i] + nums[l] + nums[r] < target)
+                    {
+                        count++; //count += r - l;
+                        l++;
+                    }
+                    else
+                        r--;
+                }
+            }
+            return count;
+        }
     }
+
+    public class ArrayDistinct : IEqualityComparer<List<int>>
+    {
+        public bool Equals(List<int> x, List<int> y)
+        {
+            x.Sort();
+            y.Sort();
+            var isEqual =  x.SequenceEqual(y);
+            return isEqual;
+        }
+
+        public int GetHashCode([DisallowNull] List<int> obj)
+        {
+            return 1;
+        }
+
+    }
+
 }
 
 
