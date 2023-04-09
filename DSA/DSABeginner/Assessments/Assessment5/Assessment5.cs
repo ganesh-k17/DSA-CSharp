@@ -829,6 +829,137 @@ namespace DSABeginner.Assessments.Assessment5
             }
             return actSum;
         }
+
+        /*
+        https://leetcode.com/problems/4sum/ 
+        */
+
+        //    public static IList<IList<int>> FourSum(int[] nums, int target)
+        //    {
+        //        Dictionary<int, List<Tuple<int, int>>> pairs = new();
+        //        List<IList<int>> result = new List<IList<int>>();
+
+
+        //        // Create pair dictionary
+        //        for (int i = 0; i < nums.Length-1; i++)
+        //        {
+        //            for (int j = i+1; j < nums.Length; j++)
+        //            {
+        //                int sum = nums[i] + nums[j];
+        //                if (pairs.ContainsKey(sum))
+        //                {
+        //                    foreach(Tuple<int,int> t in pairs[sum].ToList())
+        //                    {
+        //                        if(t.Item1 != nums[i] && t.Item2 != nums[i] && t.Item1 != nums[j] && t.Item2 != nums[j])
+        //                            pairs[sum].Add(Tuple.Create(nums[i], nums[j]));
+        //                    }
+        //                }
+        //                else
+        //                    pairs.Add(sum, new List<Tuple<int, int>>() { Tuple.Create(nums[i], nums[j]) });
+        //            }
+        //        }
+
+        //        for (int i = 0; i < nums.Length - 1; i++)
+        //        {
+        //            for (int j = i + 1; j < nums.Length; j++)
+        //            {
+        //                int sum = nums[i] + nums[j];
+        //                if (pairs.ContainsKey(target - sum))
+        //                {
+        //                    List<Tuple<int, int>> currentPairs = pairs[target - sum];
+        //                    for (int k = 0; k < currentPairs.Count; k++)
+        //                    {
+        //                        Tuple<int, int> currentPair = currentPairs[k];
+        //                        if(currentPair.Item1 != nums[i] && currentPair.Item2 != nums[i] && currentPair.Item1 != nums[j] && currentPair.Item2 != nums[j])
+        //                        {
+        //                            int[] valueArray = new int[] { currentPair.Item1, currentPair.Item2, nums[i], nums[j] };
+        //                            Array.Sort(valueArray);
+        //                            List<int> resultPairs = valueArray.ToList();
+        //                            result.Add(resultPairs);
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+
+        //        result = result.Distinct<IList<int>>(new ArrayDistinct1()).ToList();
+        //        return result;
+        //    }
+        //}
+
+        public static IList<IList<int>> FourSum(int[] nums, int target)
+        {
+            Dictionary<int, List<Tuple<int, int>>> pairs = new();
+            List<IList<int>> result = new List<IList<int>>();
+
+
+            // Create pair dictionary
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    int sum = nums[i] + nums[j];
+                    if (pairs.ContainsKey(sum))
+                    {
+                        //foreach (Tuple<int, int> t in pairs[sum].ToList())
+                        {
+                            //if (t.Item1 != nums[i] && t.Item2 != nums[i] && t.Item1 != nums[j] && t.Item2 != nums[j])
+                                pairs[sum].Add(Tuple.Create(i, j));
+                        }
+                    }
+                    else
+                        pairs.Add(sum, new List<Tuple<int, int>>() { Tuple.Create(i, j) });
+                }
+            }
+
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    int sum = nums[i] + nums[j];
+                    if (pairs.ContainsKey(target - sum))
+                    {
+                        List<Tuple<int, int>> currentPairs = pairs[target - sum];
+                        for (int k = 0; k < currentPairs.Count; k++)
+                        {
+                            Tuple<int, int> currentPair = currentPairs[k];
+                            if (currentPair.Item1 != i && currentPair.Item2 != i && currentPair.Item1 != j && currentPair.Item2 != j)
+                            {
+                                //int[] valueArray = new int[] { nums[currentPair.Item1], nums[currentPair.Item2], nums[i], nums[j] };
+                                //Array.Sort(valueArray);
+                                //List<int> resultPairs = valueArray.ToList();
+                                //result.Add(resultPairs);
+
+                                int[] valueArray = new int[] { nums[currentPair.Item1], nums[currentPair.Item2], nums[i], nums[j] };
+                                Array.Sort(valueArray);
+                                //List<int> resultPairs = valueArray.ToList();
+                                result.Add(new List<int> { valueArray[0], valueArray[1], valueArray[2], valueArray[3] });
+                            }
+                        }
+                    }
+                }
+            }
+
+            result = result.Distinct<IList<int>>(new ArrayDistinct1()).ToList();
+            return result;
+        }
+    }
+
+    public class ArrayDistinct1 : IEqualityComparer<IList<int>>
+    {
+        public bool Equals(IList<int> x, IList<int> y)
+        {
+        //    x.Sort();
+        //    y.Sort();
+            var isEqual = x.SequenceEqual(y);
+            return isEqual;
+        }
+
+        public int GetHashCode(IList<int> obj)
+        {
+            return 1;
+        }
+
     }
 
     public class ArrayDistinct : IEqualityComparer<List<int>>
@@ -841,7 +972,7 @@ namespace DSABeginner.Assessments.Assessment5
             return isEqual;
         }
 
-        public int GetHashCode([DisallowNull] List<int> obj)
+        public int GetHashCode( List<int> obj)
         {
             return 1;
         }
