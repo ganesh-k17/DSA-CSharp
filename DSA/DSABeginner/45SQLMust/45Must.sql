@@ -322,3 +322,117 @@ Table => Users (users_id int, banned enum, role enum)
 
 */
 
+
+/* 14.
+Write an SQL query to report the names of the customer that are not referred by the
+customer with id = 2.
+
+Table => customer (id int, name varchar,referee_id int )   // referee_id is a customer id who refered the customer
+*/
+
+-- approach 1
+
+SELECT name FROM customer WHERE referee_id <> 2 OR referee_id IS NULL;
+
+
+/* Note:  We would get our mind with the below solution without the validation of NULL.
+
+SELECT name FROM customer WHERE referee_Id <> 2;
+But in this case we would not get the customers who did'nt by refered by any customer.  As the question is bring all the customer
+but the customer refered by customer id is 2 (referee id)
+*/
+
+/* 15.
+Customer Placing the Largest Number of Orders
+
+Write an SQL query to find the customer_number for the customer who has placed the largest
+number of orders.
+
+The test cases are generated so that exactly one customer will have placed more orders than any
+other customer.
+
+Table => orders ( order_number int, customer_number int)
+*/
+
+-- approach 1
+
+
+SELECT top 1 customer_number,COUNT(order_number)
+FROM customer_orders
+GROUP BY customer_number
+ORDER BY COUNT(order_number) DESC
+
+/* we can use limit 1 approach in the above query.  In this query we have an issue if two customers have the same high
+orders then it would return only one customer.  The approach 2 is feasible one if we consider this case. as rank() function 
+give same rank for equal competitor.*/
+
+-- approach 2
+
+SELECT customer_number
+FROM (
+    SELECT customer_number, RANK() OVER (ORDER BY COUNT(order_number) DESC) AS rnk
+    FROM customer_orders
+    GROUP BY customer_number
+) ranked
+WHERE rnk = 1;
+
+/* 16
+Big Countries
+
+A country is big if,
+* it has an area of at least three million (i.e., 3000000 km2), or
+* it has a population of at least twenty-five million (i.e., 25000000).
+
+Write an SQL query to report the name, population, and area of the big countries.
+
+Table => world (name varchar, continent varchar, area int, population int, gdp bigint)
+*/
+
+-- approach 1:
+SELECT name, population, area
+FROM world
+WHERE area >= 3000000 OR population >= 25000000;
+
+-- approach 2: (this one is little fast as if index is used each query is fetched using index and unions it)
+
+SELECT
+    name, population, area
+FROM
+    world
+WHERE
+    area >= 3000000
+
+UNION
+
+SELECT
+    name, population, area
+FROM
+    world
+WHERE
+    population >= 25000000; 
+
+
+/* 17.
+Classes More Than 5 Students
+Write an SQL query to report all the classes that have at least five students
+
+Table => Courses (student varchar, class varchar)
+*/
+
+-- approach 1
+
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING COUNT(student) >= 5;
+
+-- approach 2
+
+SELECT class
+FROM (
+    SELECT class, COUNT(student) AS student_count
+    FROM Courses
+    GROUP BY class
+) ordered
+WHERE student_count >= 5;
+
