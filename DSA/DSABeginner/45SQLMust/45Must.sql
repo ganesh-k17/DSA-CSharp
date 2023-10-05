@@ -436,3 +436,75 @@ FROM (
 ) ordered
 WHERE student_count >= 5;
 
+/* 18.
+
+Human Traffic of Stadium
+
+Write an SQL query to display the records with three or more rows with consecutive id's, and the
+number of people is greater than or equal to 100 for each.
+
+visit_date is the primary key for this table.
+
+Each row of this table contains the visit date and visit id to
+the stadium with the number of people during the visit.
+
+No two rows will have the same visit_date, and as the id
+increases, the dates increase as well.
+
+
+Table => Stadium (visit_date date (primary_key), id int, people int)
+*/
+
+-- approach 1
+
+with filtered_data as (
+select id, 
+       visit_date, 
+       people, 
+       LAG(id,1) OVER(order by id) as prevID_1, 
+       LAG(id,2) OVER(order by id) as prevID_2,
+       LEAD(id,1) OVER(order by id) as nextID_1, 
+       LEAD(id,2) OVER(order by id) as nextID_2
+from Stadium 
+where people>=100
+), 
+
+ordered_filtered_data as (
+select *, 
+       CASE WHEN id+1=nextID_1 AND id+2 = nextID_2 then 'Y' 
+            WHEN id-1=prevID_1 AND id-2 = prevID_2 then 'Y' 
+            WHEN id-1 = prevID_1 and id+1=nextID_1 then 'Y'
+            ELSE 'N' END as flag
+from filtered_data
+)
+
+select id, visit_date, people from ordered_filtered_data where flag = 'Y'
+
+
+-- approach 2
+
+
+WITH partitioned AS (
+      SELECT *, id - ROW_NUMBER() OVER (ORDER BY id) AS grp
+      FROM stadium
+      WHERE people >= 100
+    ),
+    counted AS (
+      SELECT *, COUNT(*) OVER (PARTITION BY grp) AS cnt
+      FROM partitioned
+    )    
+   
+    select id , visit_date,people
+    from counted
+    where cnt>=3
+
+/* 19.
+Sales Person
+Question. 19
+Write an SQL query to report the names of all the salespersons who did not have any orders
+related to the company with the name "RED".
+
+Table => company (com_id int, name varchar, city varchar)
+Table => SalesPerson (sales_id int, name varchar, salary int, commission_rate int, hire_date date)
+Table => Orders (order_id int, order_date date, com_in int, sales_id int, amount int)
+*/
