@@ -508,3 +508,29 @@ Table => company (com_id int, name varchar, city varchar)
 Table => SalesPerson (sales_id int, name varchar, salary int, commission_rate int, hire_date date)
 Table => Orders (order_id int, order_date date, com_in int, sales_id int, amount int)
 */
+
+SELECT name
+FROM salesperson
+WHERE
+    sales_id NOT IN (
+        SELECT s.sales_id
+        FROM
+            orders AS o
+            INNER JOIN salesperson AS s ON o.sales_id = s.sales_id
+            INNER JOIN company AS c ON o.com_id = c.com_id
+        WHERE c.name = 'RED'
+    );
+
+    /*
+    There is chance that we end up with below query,
+
+    select sp.name, o.order_id, c.name from SalesPerson sp 
+	left join orders o on sp.sales_id = o.sales_id
+	left join company c on c.com_id = o.com_id
+	where c.name IS NULL or c.name <> 'RED'
+
+    This query brings sales person if it has "RED" and some other company.   
+    But we should get only sales person who is not involved with the order "RED".
+    So we need fetch the sales person of having RED and exclude from the original list.
+    */
+
