@@ -139,6 +139,8 @@ namespace DSABeginner
 
             LongestSequenceInArray.FindLongestSequenceInArray(new int[] {1,2,3,4,5,7,8,9,10,11,12,13,14,15 });
 
+            var indexes =  SumOfIndex.Find(23, new int[] { 12, 4, 5, 18, 5 });
+
 
             Console.Read();
         }
